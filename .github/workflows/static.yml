@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Money Transfer Tracking</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        text-align: center;
+        padding: 50px;
+    }
+    .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 400px;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+    }
+    button {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .result {
+        margin-top: 20px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Track Your Transfer</h2>
+    <input type="text" id="code" placeholder="Enter Tracking Code">
+    <br>
+    <button onclick="track()">Track</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function track() {
+    var code = document.getElementById("code").value;
+    var result = document.getElementById("result");
+
+    // Fake database
+    var data = {
+        "TRF-USD-20260408-7X9K3Q": {
+            status: "Processing",
+            amount: "$400,000",
+            sender: "RichardMiller",
+            receiver: "Beatrice Basaldua",
+            date: "April 9, 2026"
+        }
+    };
+
+    if (data[code]) {
+        var t = data[code];
+        result.innerHTML = `
+            <p><strong>Status:</strong> ${t.status}</p>
+            <p><strong>Amount:</strong> ${t.amount}</p>
+            <p><strong>Sender:</strong> ${t.sender}</p>
+            <p><strong>Receiver:</strong> ${t.receiver}</p>
+            <p><strong>Date:</strong> ${t.date}</p>
+        `;
+    } else {
+        result.innerHTML = "<p style='color:red;'>Invalid Tracking Code</p>";
+    }
+}
+</script>
+
+</body>
+</html>
